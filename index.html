@@ -1,15 +1,25 @@
-<HTML>
-<HEAD>
-<title></title>
-</script>
-</HEAD>
-<BODY>
-<a href="tel:99717786">Faz chamada telefônica para Cláudio - Projetium</a> 
-<br>
-<br>
-<a href="mailto:claudio@projetium.com.br?subject=Testando%20Phonegap">Envia email para Cláudio - Projetium</a> 
-<br>
-<br>
-<div onclick="window.location.href = 'tel:99717786'" >Faz chamada telefônica para Cláudio - Projetium</div>
-</BODY>
-</HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>90210 Lookup</title>
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" src="script/xui.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    x$.data = {};
+    x$(window).load(function(e){
+      x$("#returned_information").xhr("http://ws.geonames.org/postalCodeSearchJSON?postalcode=90210&maxRows=10", 
+        { callback: function(){
+            var codes = eval("("+this.responseText+")").postalCodes; /* this should be an array */
+            x$("#returned_information").html(codes[0].placeName);
+          }
+        }
+      );
+    });
+    </script>
+  </head>
+  <body>
+    <h1 id="returned_information">
+      Put Stuff in Me
+    </h1>
+  </body>
+</html>
